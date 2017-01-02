@@ -1,0 +1,98 @@
+There is a sample DFS implementation to solve this kind of problem as below:
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * @author Sujeet Kumar (mrsujeet@gmail.com) It prints out all strings that can
+ *         be formed by moving left, right, up, down, or diagonally and exist in
+ *         a given dictionary , without repeating any cell. Assumes words are
+ *         comprised of lower case letters. Currently prints words as many times
+ *         as they appear, not just once. *
+ */
+
+public class BoggleGame {
+
+    /* A sample 4X4 board/2D matrix */
+    private static char[][] board = { { 's', 'a', 's', 'g' },
+                                      { 'a', 'u', 't', 'h' }, 
+                                      { 'r', 't', 'j', 'e' },
+                                      { 'k', 'a', 'h', 'e' }
+                                    };
+
+    /* A sample dictionary which contains unique collection of words */
+    private static Set dictionary = new HashSet();
+
+    private static boolean[][] visited = new boolean[board.length][board[0].length];
+
+    public static void main(String[] arg) {
+        dictionary.add("sujeet");
+        dictionary.add("sarthak");
+        findWords();
+
+    }
+
+    // show all words, starting from each possible starting place
+    private static void findWords() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                StringBuffer buffer = new StringBuffer();
+                dfs(i, j, buffer);
+            }
+
+        }
+
+    }
+
+    // run depth first search starting at cell (i, j)
+    private static void dfs(int i, int j, StringBuffer buffer) {
+        /*
+         * base case: just return in recursive call when index goes out of the
+         * size of matrix dimension
+         */
+        if (i < 0 || j < 0 || i > board.length - 1 || j > board[i].length - 1) {
+            return;
+        }
+
+        /*
+         * base case: to return in recursive call when given cell is already
+         * visited in a given string of word
+         */
+        if (visited[i][j] == true) { // can't visit a cell more than once
+            return;
+        }
+
+        // not to allow a cell to reuse
+        visited[i][j] = true;
+
+        // combining cell character with other visited cells characters to form
+        // word a potential word which may exist in dictionary
+        buffer.append(board[i][j]);
+
+        // found a word in dictionary. Print it.
+        if (dictionary.contains(buffer.toString())) {
+            System.out.println(buffer);
+        }
+
+        /*
+         * consider all neighbors.For a given cell considering all adjacent
+         * cells in horizontal, vertical and diagonal direction
+         */
+        for (int k = i - 1; k <= i + 1; k++) {
+            for (int l = j - 1; l <= j + 1; l++) {
+                dfs(k, l, buffer);
+
+            }
+
+        }
+        buffer.deleteCharAt(buffer.length() - 1);
+        visited[i][j] = false;
+    }
+
+}
+
+
+Complexity of this algo is MxNxW. 
+Thanks for reading...
+
+

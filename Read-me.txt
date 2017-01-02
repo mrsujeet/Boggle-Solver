@@ -1,0 +1,10 @@
+Boggle Game Solver or Word Search in 2D Array or MXN Matrix by using DFS algorithm 
+This is one of the most important problem that every programmer should know. Specially who target for the top notch companies like bla..bla...bla.
+In this post , lets focus on simple but less efficient approach to solve this problem. Before we start lets understand the problem.
+Problem: Given a 2D array or a MXN matrix and a given dictionary, find all possible words made of combining characters of the matrix that belong to the given matrix where:
+1) Each cell represents a character
+2) A valid word must be composed by following a sequence of adjacent dice—two dice are adjacent if they are horizontal, vertical, or diagonal neighbors.
+3) A valid word can use each cell at most once.
+4) A valid word must be in the given dictionary.
+
+For more detailed eaplanation you can visit: http://sujeet-web.blogspot.com/2016/12/boggle-game-solver-or-word-search-in-2d.html
